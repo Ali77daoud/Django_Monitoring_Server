@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/styleAddDevice.css'%}">
+    <title>Add Device</title>
+</head>
+<body>
+    <!--main page-->
+    <div class="all-page">
+        <!--header nav-->
+        <div class=" nav-bar">
+            <!--nav-->
+            <nav class="nav">
+                <ul class="ul nav">
+                    <li class="left"><img src="{%static 'img/logo.png'%}" alt="logo" id="img"></li>
+                    <li><a href="{% url 'home'%}">Home</a></li>
+                    <li><a href="{% url 'add'%}">Add Device</a> </li>
+                    <li><a href="about.html">About</a></li>
+                    <li >
+<!--                        <form method="POST">-->
+<!--                             <label for="search">Search:</label>-->
+<!--                            <input type="search" name="search" id="search" placeholder="Search About Device">-->
+<!--                            <input type="submit" value="Go" class="submit">-->
+<!--                        </form>-->
+                    </li>
+                 </ul>
+                 
+             </nav>
+        </div>
+        <!--div main-->
+        <div class="main-add">
+            <!--div add device-->
+            <div class="add-device">
+                <form method="POST" class="add" action="#">
+                    {% csrf_token %}
+                    <label for="ipAdd" class="lab">IP Address :</label><br>
+                    <input type="text"  id="ipAdd" aria-describedby="ipAdd" placeholder="192.168.1.1" name="IP" required class="in">
+                  
+                  
+                 
+                    <label for="community" class="lab">Community :</label><br>
+                    <input type="text"  id="community" placeholder="a@Tgk" name="community" required class="in">
+                  
+                  
+                    <input type="radio" id="router" value="Router" name="radio1" class="rou" checked>
+                    <label  for="router" class="rad">Router</label>
+                  
+                  
+                    <input type="radio"  id="switch" value="Switch" name="radio1">
+                    <label  for="switch" class="rad">Switch</label>
+                    <button type="reset" class="but">Reset</button>
+                  <button type="submit" class="but" >Submit</button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+</html>

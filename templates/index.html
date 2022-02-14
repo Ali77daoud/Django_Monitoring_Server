@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/styleHome.css'%}">
+    <title>Home</title>
+</head>
+<body>
+    <!--main page-->
+    <div class="all-page">
+        <!--header nav-->
+        <div class=" nav-bar">
+            <!--nav-->
+            <nav class="nav">
+                <ul class="ul nav">
+                    <li class="left"><img src="{%static 'img/logo.png'%}" alt="logo" id="img"></li>
+                    <li><a href="{% url 'home'%}">Home</a></li>
+                    <li><a href="{% url 'add'%}">Add Device</a> </li>
+                    <li><a href="about.html">About</a></li>
+
+                    <li >
+                        <!--HERE SEARCH-->
+                        <div>
+                             <label for="search">Search:</label>
+                            <input type="text" name="search" id="search" placeholder="Search using IP"  onkeyup="myFunction()" class="input">
+                        </div>
+                       <!--HERE END OF SEARCH-->
+                    </li>
+                 </ul>
+                 
+             </nav>
+        </div>
+        <!--main content in home page-->
+         <div class="tables">
+        <div class="main-home">
+            <table id="myTable" data-name="mytable">
+                <thead>
+                    <tr>
+                        <th>IP</th>
+                        <th>Type Of Device</th>
+                        <th>Type Of Monitoring</th>
+                        <th>Operating System</th>
+                        <th>Date Added</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+
+                    {% for device in devices%}
+                    <tr>
+                        <td>{{ device.ip}}</td>
+                        <td>{{device.type_of_device}}</td>
+                        <td>{{device.type_of_monitoring}}</td>
+                        <td>{{device.operating_system}}</td>
+                        <td>{{device.date}}</td>
+                        {%if device.if_alert == False %}
+                                <td style="margin-left: 30px; color:green;font-weight:bold; ">Normal</td>
+                                {% else %}
+                                <td style="margin-left: 30px; color:red;font-weight:bold;">Alert</td>
+                        {% endif %}
+                        <td> <button   type="button" ><a href="{% url 'd_details' device.pk%}" target="_blank">Details</a></button></td>
+                    </tr>
+                    {% endfor%}
+
+                </tbody>
+            </table>
+
+        </div>
+<!--              <div class="second_home">-->
+<!--            <table data-name="mytable" >-->
+<!--                <thead>-->
+<!--                    <tr>-->
+<!--                        <th style="margin-left: 30px;">Status</th>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                    {% for info in alert_info%}-->
+<!--                        {%if info.if_alert == False %}-->
+<!--                    <tr>-->
+<!--                        <td style="margin-left: 30px; color:green;font-weight:bold; ">Normal</td>-->
+<!--                    </tr>-->
+<!--                        {% else %}-->
+<!--                    <tr>-->
+<!--                        <td style="margin-left: 30px; color:red;font-weight:bold;">Alert</td>-->
+<!--                    </tr>-->
+<!--                        {% endif %}-->
+
+<!--                    {% endfor %}-->
+<!--                </tbody>-->
+<!--            </table>-->
+
+<!--        </div>-->
+
+
+
+    </div>
+         </div>
+
+
+
+<script>
+     window.setInterval('refresh()',10000);
+            function refresh(){
+                window.location.reload();
+            }
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue,alltables;
+      alltables = document.querySelectorAll("table[data-name=mytable]");
+      input = document.getElementById("search");
+      filter = input.value.toUpperCase();
+     alltables.forEach(function(table){
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+  });
+    }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/styleDetails.css'%}">
+    <script src="{% static 'js/javascript.js'%}"></script>
+    <title>Agent</title>
+</head>
+<body onload="cpuUsagS(); ram();">
+    <!--main page-->
+    <div class="all-page" >
+        <!--header nav-->
+        <div class=" nav-bar">
+            <!--nav-->
+            <nav class="nav">
+                <ul class="ul nav">
+                    <li class="left"><img src="{%static 'img/logo.png'%}" alt="logo" id="img"></li>
+                    <li><a href="{% url 'home'%}">Home</a></li>
+                    <li><a href="{% url 'add'%}">Add Device</a> </li>
+                    <li><a href="about.html">About</a></li>
+
+                 </ul>
+                 
+             </nav>
+        </div>
+        <!--div main-->
+        <div class="main">
+            <!--first div for graph and table cpu ram-->
+            <div class="cpuRam" >
+                <!--div for table cpu and ram-->
+                <div class="div-table">
+                    <!--table cpu-->
+                    <table class="table-cpu " >                  
+                        <thead class="thead">
+                            <tr>
+                                <th>CPU</th>  
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <tr>
+                                <td class="bold">Name </td>
+                                <td class="bold">Value</td>
+                            </tr>
+                            <tr>
+                                <td>Number Of Cores</td>
+                                <td>{{a_cpu.number_of_cores}}</td>
+                            </tr>
+                            <tr>
+                                <td>Number Of Logical Core</td>
+                                <td>{{a_cpu.number_of_logical}}</td>
+                            </tr>
+                            <tr>
+                                <td>User Mode</td>
+                                <td>{{a_cpu.user_mode}}</td>
+                            </tr>
+                            <tr>
+                                <td>System Mode</td>
+                                <td>{{a_cpu.system_mode}}</td>
+                            </tr>
+                            <tr>
+                                <td>Idle</td>
+                                <td>{{a_cpu.idle}}</td>
+                            </tr>
+                            <tr>
+                                <td>Interrupt</td>
+                                <td>{{a_cpu.interrupt}}</td>
+                            </tr>
+                            <tr>
+                                <td>Max Freq</td>
+                                <td>{{a_cpu.max_freq}}</td>
+                            </tr>
+                            <tr>
+                                <td>Min Freq</td>
+                                <td>{{a_cpu.min_freq}}</td>
+                            </tr>
+                            <tr>
+                                <td>Current Freq</td>
+                                <td>{{a_cpu.current_freq}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--div for RAM-->
+                    <table class="table-cpu">
+                       
+                        <thead class="thead">
+                            <tr>
+                                <th>RAM</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <tr>
+                                <td class="bold">Name </td>
+                                <td class="bold">Value</td>
+                            </tr>
+                            <tr>
+                                <td>Total RAM</td>
+                                <td>{{a_ram.total_ram}}</td>
+                            </tr>
+                            <tr>
+                                <td>Available Space</td>
+                                <td>{{a_ram.available_space}}</td>
+                            </tr>
+                            <tr>
+                                <td>Used Space</td>
+                                <td>{{a_ram.used_space}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <!--div graaph-->
+                <div class="div-graph" >
+                    <div class="cpu">
+                        <canvas id="myChart"  style="width:100%;" class="graph"></canvas>
+                    </div>
+                  
+                    <div class="cpu">
+                        <canvas id="rame"  style="width:100%;" class="graph"></canvas>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--div disk and network-->
+            <div class="div-netdisk">
+                <table class="table-cpu hei" >
+                    <thead class="thead">
+                        <tr>
+                            <th>Disk</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        <tr>
+                            <td class="bold">Disk Name</td>
+                            <td class="bold">Disk Type</td>
+                            <td class="bold">Disk Size</td>
+                            <td class="bold">Disk Usage</td>
+                            <td class="bold">Disk Percent Used</td>
+                        </tr>
+                        {% for aa in a_disk%}
+
+                        <tr >
+                            <td>{{aa.disk_name}}</td>
+                            <td>{{aa.disk_type}}</td>
+                            <td>{{aa.disk_size}} <p> MB</p></td>
+                            <td>{{aa.disk_usage}}<p>MB</p></td>
+                            {% if aa.disk_percent_used >= 80 %}
+                            <td style="color:red;font-weight:bold;font-size:23px;">{{aa.disk_percent_used}}<p>%</p></td>
+                            {%else%}
+                            <td>{{aa.disk_percent_used}}<p>%</p></td>
+                            {% endif %}
+                        </tr>
+
+
+                        {% endfor%}
+
+                    </tbody>
+                    <!--network table-->
+                    <table class="table-cpu " >
+                        <thead class="thead">
+                            <tr>
+                                <th>Network</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+
+                            <tr>
+                                <td class="bold">Name </td>
+                                <td class="bold">IP4</td>
+                                <td class="bold">Subnet</td>
+                                <td class="bold">IP6</td>
+                                <td class="bold">MAC</td>
+                                <td class="bold">Is Up</td>
+                            </tr>
+                            {% for nn in a_net%}
+                            <tr>
+                                <td>{{nn.nic_name}}</td>
+                                <td>{{nn.ip4}}</td>
+                                <td>{{nn.subnet}}</td>
+                                <td>{{nn.ip6}}</td>
+                                <td>{{nn.mac}}</td>
+                                <td>{{nn.is_up}}</td>
+                            </tr>
+                             {% endfor%}
+                        </tbody>
+                </table>
+                </table>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+     </div>
+
+
+
+        <script>
+            window.setInterval('refresh()',10000);
+            function refresh(){
+                window.location.reload();
+            }
+              //CPU CPU CPU
+        function cpuUsagS(){
+               // var cpuUsag = document.getElementById('myChart');
+                let cpuUsag = document.getElementById("myChart").getContext('2d');
+                let define1 = ['CPU USAGE'];
+                var x = [];
+                var k = 0;
+                var o = 0;
+                var r = [];
+                var s;
+
+                {% for c in cpu_graph%}
+                     x[k] = {{ c.usage_of_cpu}};
+                     //s={{ c.date}};
+                     r[k]="";
+                     
+
+                     k=k+1;
+                    // o=o+1;
+                {% endfor%}
+                var i =0;
+                var j=0;
+                var yValues =x;
+                var xValues =r;
+                while(yValues.length>60){
+                    yValues.shift();
+                }
+                 while(xValues.length>61){
+                    xValues.shift();
+                }
+
+
+            
+            new Chart(cpuUsag, {
+                    type: "line",
+                        data: {
+                        labels: xValues,
+                        datasets: [{
+                            label: define1,
+                        fill: true,
+                        lineTension: 0,
+                        {%if a_cpu.usage_of_cpu >= 80%}
+                        backgroundColor: '#ff6666',
+                        borderColor: "#cc0000",
+                        {% else%}
+                        backgroundColor: "rgba(0,0,255,0.3)",
+                        borderColor: "rgba(255,125,125,0.5)",
+                        {% endif %}
+                        data: yValues
+                                }],
+                            },
+                    options: {
+                        title:{
+                            text:define1,
+                            display:true
+                        },
+                        legend: {display: true},
+                        scales: {
+                        // y Axes
+                        yAxes: [{ticks: {min: 0, max:100}}],
+                        xAxis: {
+                            // The axis for this scale is determined from the first letter of the id as `'x'`
+                            // It is recommended to specify `position` and / or `axis` explicitly.
+                            type: 'time',
+                          }
+                      //  xAxes:[{
+                        //    type: 'time'
+                       // }]
+
+                        }
+                    }
+                                                        });
+                                                }
+                
+            //ram ram
+            function ram(){
+                let labels1 = ['Usage', 'Free'];
+                //here data
+                let x = Math.round({{a_ram.percent_of_used}});
+                let y = Math.round(100-x);
+                let data1 = [x, y];
+                {% if a_ram.percent_of_used >= 80 %}
+                let colors1 = ['#cc0000', '#ff471a'];
+                {% else %}
+                let colors1 = ['#a31aff', '#cc99ff'];
+                {% endif %}
+                let myDoughnutChart = document.getElementById("rame").getContext('2d');
+
+                let chart1 = new Chart(myDoughnutChart, {
+                type: 'doughnut',
+                     data: {
+                        labels: ['used : '+x+'%','free : '+y+'%'],
+                            datasets: [ {
+                               data: data1,
+                                  backgroundColor: colors1
+                              }]
+                          },
+                     options: {
+                         title: {
+                            text: "RAM",
+                            display: true
+                            }
+                         }
+                });  }
+        </script>
+</body>
+</html>

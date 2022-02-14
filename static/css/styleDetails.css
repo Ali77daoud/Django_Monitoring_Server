@@ -1,0 +1,246 @@
+*{
+    margin: 0px;
+}
+div.all-page{
+    width: 100%;
+    height: 1500px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 5px;
+    
+}
+
+div.nav-bar{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+nav.nav{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+
+ul.ul{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    background-image: linear-gradient(to right,white,gray,rgba(65, 10, 10, 0.664));
+    border-radius: 15px;
+    box-shadow: 0px 1px 12px 0px gray;
+    list-style: none;
+}
+ul li{
+    width: 7%;
+    margin: 11px;
+    box-sizing: border-box;
+}
+
+ul li a{
+    color: black;
+    text-decoration: none;
+    font-style: oblique;
+}
+#img{
+    width: 90%;
+}
+
+form{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+li form label{
+    font-style: italic;
+}
+li form input{
+    border-radius: 15px;
+}
+input.submit{
+    background-color: black;
+    color: white;
+    font-style: italic;
+}
+input.submit:hover{
+    background-color: lightseagreen;
+}
+li.left{
+    margin-left: -30px;
+    margin-right: 20px;
+    padding-left: 0px;
+}
+/*style for main content*/
+div.main{
+    width: 100%;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    flex-flow: nowrap;
+   
+   
+}
+/*first div for graph and table cpu ram*/
+div.cpuRam{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+table.hei{
+ height:200px;
+}
+/* div for table cpu and ram*/
+
+div.div-table{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow: auto;
+}
+/*style for table*/
+table.table-cpu{
+    width: 80%;
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border-radius: 8px;
+    box-shadow: 2px 2px 3px 1px gray;
+    overflow-y: auto; 
+}
+thead.thead{
+    width: 100%;
+}
+table thead tr {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    box-shadow: 0px 2px 12px 0px gray;
+    border-radius: 10px;
+    align-items: center;
+    background-color: rgb(56, 2, 2);
+}
+tr th{
+    width: 100%;
+    color: blanchedalmond;
+}
+tbody.tbody{
+    width: 100%;
+}
+tbody:hover{
+    overflow-y: auto;
+}
+table tbody tr{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    border-bottom: 1px solid gray;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+table tbody tr td{
+    width: 50%;
+    text-align: center;
+}
+td.bold{
+    text-align: center;
+    font-weight: bold;
+}
+div.div-graph{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+/* div graph for cpu*/
+div.cpu{
+    width: 90%;
+    height: 40%;
+    margin-top: 20px;
+}
+
+canvas.graph{
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+}
+/* div disk and network*/
+div.div-netdisk{
+    width: 100%;
+    height: 44%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    align-items: center;
+}
+
+
+/*here for fastEthernet*/
+
+
+div.div-table-one{
+    width: 99%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow: auto;
+    margin-bottom: 50px;
+}
+
+
+form.new_form{
+    margin-left: 90px;
+}
+button.new_butn{
+    margin-left: 50px;
+    border-radius: 25px;
+    color: white;
+    background-color: rgb(149, 16, 16);
+}
+button.new_butn_one{
+    border-radius: 25px ;
+    color: white;
+    background-color: green;
+    border-color: green;
+}
+td.color_on{
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
+}
+td.color_off{
+    color: rgb(149, 16, 16);
+    font-weight: bold;
+    font-size: 20px;
+}
+button.detail_butn{
+    border-radius: 25px;
+    background-color: aqua;
+}
+
+button.detail_butn a{
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    color: black;
+}

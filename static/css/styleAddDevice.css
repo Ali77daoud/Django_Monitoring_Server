@@ -1,0 +1,142 @@
+*{
+    margin: 0px;
+}
+div.all-page{
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 5px;
+}
+
+div.nav-bar{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+nav.nav{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+
+ul.ul{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    background-image: linear-gradient(to right,white,gray,rgba(65, 10, 10, 0.664));
+    border-radius: 15px;
+    box-shadow: 0px 1px 12px 0px gray;
+    list-style: none;
+}
+ul li{
+    width: 7%;
+    margin: 11px;
+    box-sizing: border-box;
+}
+
+ul li a{
+    color: black;
+    text-decoration: none;
+    font-style: oblique;
+}
+#img{
+    width: 90%;
+}
+
+form{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+li form label{
+    font-style: italic;
+}
+li form input{
+    border-radius: 15px;
+}
+input.submit{
+    background-color: black;
+    color: white;
+    font-style: italic;
+}
+input.submit:hover{
+    background-color: lightseagreen;
+}
+li.left{
+    margin-left: -30px;
+    margin-right: 20px;
+    padding-left: 0px;
+}
+
+div.main-add{
+    width: 100%;
+    height: 800px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+
+}
+
+div.add-device{
+    width: 50%;
+    height: 50%;
+    border-radius: 15px;
+    box-shadow: 1px 2px 3px 1px gray;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+form.add{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 10px;
+}
+label.lab{
+    margin-top: 10px;
+    font-style: oblique;
+
+}
+
+input.in{
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid white;
+    box-shadow: 1px 2px 3px 1px gray;
+    margin-bottom: 10px;
+}
+
+label.rad{
+    font-style:inherit;
+    font-size: large;
+    margin-bottom: 20px;
+    
+
+}
+
+input.rou{
+    margin-top: 20px;
+}
+button.but{
+    width: 10%;
+    margin-bottom: 20px;
+    border:  1px solid white;
+    box-shadow: 1px 2px 3px 1px gray;
+    border-radius: 5px;
+    /*background-color: aliceblue;*/
+}
